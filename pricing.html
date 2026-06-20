@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pricing — Exoo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="noise"></div>
+<div class="bg-glow"></div>
+
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">exoo<span class="logo-dot">.</span></a>
+    <nav class="nav-links">
+      <a href="product.html">Product</a>
+      <a href="how-it-works.html">How it works</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="faq.html">FAQ</a>
+    </nav>
+    <div class="nav-actions">
+      <a href="pricing.html" class="btn btn-ghost">Sign in</a>
+      <a href="pricing.html" class="btn btn-primary">Start free</a>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="nav-mobile" id="navMobile">
+    <a href="product.html">Product</a>
+    <a href="how-it-works.html">How it works</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="faq.html">FAQ</a>
+    <a href="pricing.html" class="btn btn-primary full">Start free</a>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero" style="padding-bottom:20px;">
+    <div class="hero-inner">
+      <p class="eyebrow mono">⏤ pricing</p>
+      <h1 class="hero-title" style="font-size:clamp(32px,5vw,52px);">
+        Pick a plan, <span class="grad-text">cancel anytime.</span>
+      </h1>
+      <p class="hero-sub">No hidden tiers, no sales call required to start. Upgrade or downgrade whenever your usage changes.</p>
+    </div>
+  </section>
+
+  <section class="pricing" style="padding-top:0;">
+    <div class="pricing-toggle">
+      <span class="toggle-label active" id="labelMonthly">Monthly</span>
+      <button class="toggle-switch" id="billingToggle" role="switch" aria-checked="false" aria-label="Toggle yearly billing">
+        <span class="toggle-knob"></span>
+      </button>
+      <span class="toggle-label" id="labelYearly">Yearly <span class="save-tag">save 20%</span></span>
+    </div>
+
+    <div class="pricing-grid">
+      <div class="price-card">
+        <h3>Starter</h3>
+        <p class="price-desc">For trying Exoo out.</p>
+        <p class="price-amount"><span class="amt" data-monthly="0" data-yearly="0">$0</span><span class="per">/mo</span></p>
+        <ul class="price-features">
+          <li>50 questions / month</li>
+          <li>Standard response speed</li>
+          <li>Source citations</li>
+        </ul>
+        <a href="chat.html" class="btn btn-ghost full">Start free</a>
+      </div>
+      <div class="price-card featured">
+        <span class="price-badge">Most popular</span>
+        <h3>Pro</h3>
+        <p class="price-desc">For everyday use.</p>
+        <p class="price-amount"><span class="amt" data-monthly="20" data-yearly="16">$20</span><span class="per">/mo</span></p>
+        <ul class="price-features">
+          <li>Unlimited questions</li>
+          <li>Priority response speed</li>
+          <li>Source citations</li>
+          <li>Upload docs &amp; codebases</li>
+        </ul>
+        <a href="chat.html" class="btn btn-primary full">Start free</a>
+      </div>
+      <div class="price-card">
+        <h3>Team</h3>
+        <p class="price-desc">For shared workspaces.</p>
+        <p class="price-amount"><span class="amt" data-monthly="45" data-yearly="36">$45</span><span class="per">/mo per seat</span></p>
+        <ul class="price-features">
+          <li>Everything in Pro</li>
+          <li>Shared context across team</li>
+          <li>Admin controls</li>
+        </ul>
+        <a href="#" class="btn btn-ghost full">Talk to sales</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ teaser linking to full FAQ page -->
+  <section class="faq">
+    <div class="section-head">
+      <p class="eyebrow mono">⏤ before you buy</p>
+      <h2>Quick answers.</h2>
+    </div>
+    <div class="faq-list">
+      <details class="faq-item" open>
+        <summary>Is there a free plan?<span class="faq-icon">+</span></summary>
+        <p>Yes. Starter gives you 50 questions a month at no cost, no credit card required.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Can I cancel anytime?<span class="faq-icon">+</span></summary>
+        <p>Yes. Cancel from your account settings at any time — you'll keep access until the end of your billing period.</p>
+      </details>
+    </div>
+    <div style="margin-top:28px;">
+      <a href="faq.html" class="btn btn-ghost">See full FAQ →</a>
+    </div>
+  </section>
+
+  <section class="final-cta">
+    <div class="final-cta-glow"></div>
+    <h2>Start free today.</h2>
+    <p>No credit card. Your first answer is seconds away.</p>
+    <a href="chat.html" class="btn btn-primary btn-lg">Start free</a>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-top">
+    <a href="index.html" class="logo">exoo<span class="logo-dot">.</span></a>
+    <nav class="footer-links">
+      <a href="product.html">Product</a>
+      <a href="how-it-works.html">How it works</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="faq.html">FAQ</a>
+    </nav>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Exoo. All rights reserved.</p>
+    <div class="status mono"><span class="status-dot"></span> All systems online</div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

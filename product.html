@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Product — Exoo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="noise"></div>
+<div class="bg-glow"></div>
+
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">exoo<span class="logo-dot">.</span></a>
+    <nav class="nav-links">
+      <a href="product.html">Product</a>
+      <a href="how-it-works.html">How it works</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="faq.html">FAQ</a>
+    </nav>
+    <div class="nav-actions">
+      <a href="pricing.html" class="btn btn-ghost">Sign in</a>
+      <a href="pricing.html" class="btn btn-primary">Start free</a>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="nav-mobile" id="navMobile">
+    <a href="product.html">Product</a>
+    <a href="how-it-works.html">How it works</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="faq.html">FAQ</a>
+    <a href="pricing.html" class="btn btn-primary full">Start free</a>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero" style="padding-bottom:40px;">
+    <div class="hero-inner">
+      <p class="eyebrow mono">⏤ product</p>
+      <h1 class="hero-title" style="font-size:clamp(32px,5vw,52px);">
+        Built for one job. <span class="grad-text">Done right.</span>
+      </h1>
+      <p class="hero-sub">Exoo isn't trying to be everything. It answers questions — fast, sourced, and with memory of what you've already told it.</p>
+    </div>
+  </section>
+
+  <!-- FEATURES DETAILED -->
+  <section class="features" style="padding-top:20px;">
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        </div>
+        <h3>Answers in under a second</h3>
+        <p>Exoo streams its response token by token, but the first useful sentence lands before most chat tools finish "thinking." Built on a response pipeline tuned for latency, not just accuracy.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        </div>
+        <h3>Every claim, sourced</h3>
+        <p>Each answer carries a visible source trail. Click any sentence to see exactly where it came from — no answers you have to take on faith.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.6"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </div>
+        <h3>Remembers your context</h3>
+        <p>Drop in a doc, a codebase, or last week's thread — Exoo holds onto it for the whole conversation, so you never re-explain yourself.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ADDITIONAL DETAIL SECTION -->
+  <section class="how">
+    <div class="section-head">
+      <p class="eyebrow mono">⏤ under the hood</p>
+      <h2>Why it feels instant.</h2>
+      <p class="section-sub">Three deliberate engineering choices, not a single "fast mode" switch.</p>
+    </div>
+    <div class="how-flow">
+      <div class="how-step">
+        <span class="how-num mono">→</span>
+        <h3>Streaming-first pipeline</h3>
+        <p>The first sentence of an answer starts rendering before the rest of the response is even generated.</p>
+      </div>
+      <div class="how-step">
+        <span class="how-num mono">→</span>
+        <h3>Source-linked retrieval</h3>
+        <p>Sources are fetched in parallel with generation, not as an afterthought tacked on at the end.</p>
+      </div>
+      <div class="how-step">
+        <span class="how-num mono">→</span>
+        <h3>Persistent context window</h3>
+        <p>Your uploaded docs and chat history stay warm in memory, so follow-ups don't re-trigger a cold lookup.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="final-cta">
+    <div class="final-cta-glow"></div>
+    <h2>See it for yourself.</h2>
+    <p>Start free. No credit card. Your first answer is seconds away.</p>
+    <a href="chat.html" class="btn btn-primary btn-lg">Start free</a>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-top">
+    <a href="index.html" class="logo">exoo<span class="logo-dot">.</span></a>
+    <nav class="footer-links">
+      <a href="product.html">Product</a>
+      <a href="how-it-works.html">How it works</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="faq.html">FAQ</a>
+    </nav>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Exoo. All rights reserved.</p>
+    <div class="status mono"><span class="status-dot"></span> All systems online</div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

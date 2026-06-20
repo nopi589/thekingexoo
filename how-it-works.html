@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How it works — Exoo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="noise"></div>
+<div class="bg-glow"></div>
+
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">exoo<span class="logo-dot">.</span></a>
+    <nav class="nav-links">
+      <a href="product.html">Product</a>
+      <a href="how-it-works.html">How it works</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="faq.html">FAQ</a>
+    </nav>
+    <div class="nav-actions">
+      <a href="pricing.html" class="btn btn-ghost">Sign in</a>
+      <a href="pricing.html" class="btn btn-primary">Start free</a>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="nav-mobile" id="navMobile">
+    <a href="product.html">Product</a>
+    <a href="how-it-works.html">How it works</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="faq.html">FAQ</a>
+    <a href="pricing.html" class="btn btn-primary full">Start free</a>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero" style="padding-bottom:40px;">
+    <div class="hero-inner">
+      <p class="eyebrow mono">⏤ the loop</p>
+      <h1 class="hero-title" style="font-size:clamp(32px,5vw,52px);">
+        Ask, answer, refine. <span class="grad-text">That's it.</span>
+      </h1>
+      <p class="hero-sub">No prompt engineering, no setup flow. Exoo is built around one repeating loop that gets faster the more you use it.</p>
+    </div>
+  </section>
+
+  <section class="how" style="padding-top:20px;">
+    <div class="how-flow">
+      <div class="how-step">
+        <span class="how-num mono">01</span>
+        <h3>Ask in plain language</h3>
+        <p>Type the question the way you'd ask a colleague. No prompt syntax to learn, no special formatting.</p>
+      </div>
+      <div class="how-arrow" aria-hidden="true">→</div>
+      <div class="how-step">
+        <span class="how-num mono">02</span>
+        <h3>Exoo answers instantly</h3>
+        <p>A direct answer streams in immediately, with sources attached inline as it goes.</p>
+      </div>
+      <div class="how-arrow" aria-hidden="true">→</div>
+      <div class="how-step">
+        <span class="how-num mono">03</span>
+        <h3>Refine without repeating</h3>
+        <p>Push back, narrow it down, or ask a follow-up — Exoo keeps the thread and never asks you to re-explain.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXTRA DETAIL: typical use cases -->
+  <section class="features">
+    <div class="section-head">
+      <p class="eyebrow mono">⏤ where it fits</p>
+      <h2>The loop in practice.</h2>
+    </div>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <h3>Research, mid-task</h3>
+        <p>Ask a question without leaving your doc or editor. Exoo answers inline so you don't lose your train of thought.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Onboarding, on demand</h3>
+        <p>New hires ask Exoo instead of waiting for a teammate to be free — answers pull straight from your internal docs.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Debugging, out loud</h3>
+        <p>Paste an error, get a sourced explanation back in under a second, then follow up without restating the problem.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="final-cta">
+    <div class="final-cta-glow"></div>
+    <h2>Try the loop yourself.</h2>
+    <p>Start free. No credit card. Your first answer is seconds away.</p>
+    <a href="chat.html" class="btn btn-primary btn-lg">Start free</a>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-top">
+    <a href="index.html" class="logo">exoo<span class="logo-dot">.</span></a>
+    <nav class="footer-links">
+      <a href="product.html">Product</a>
+      <a href="how-it-works.html">How it works</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="faq.html">FAQ</a>
+    </nav>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Exoo. All rights reserved.</p>
+    <div class="status mono"><span class="status-dot"></span> All systems online</div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

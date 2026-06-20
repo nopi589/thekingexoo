@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chat — Exoo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="chat.css">
+</head>
+<body class="chat-body">
+
+<div class="noise"></div>
+<div class="bg-glow chat-glow"></div>
+
+<!-- COMPACT CHAT HEADER -->
+<header class="chat-header">
+  <a href="index.html" class="logo">exoo<span class="logo-dot">.</span></a>
+  <div class="chat-header-right">
+    <span class="status mono chat-status"><span class="status-dot"></span> online</span>
+    <button class="btn btn-ghost btn-sm" id="newChatBtn">New chat</button>
+  </div>
+</header>
+
+<main class="chat-main">
+  <div class="chat-window" id="chatWindow">
+    <div class="chat-empty" id="chatEmpty">
+      <p class="eyebrow mono">⏤ ask exoo anything</p>
+      <h1>What do you want to know?</h1>
+      <p class="chat-empty-sub">Answers stream in instantly, with sources you can check.</p>
+      <div class="chat-suggestions">
+        <button class="chip" data-q="Explain quantum computing in simple terms">Explain quantum computing simply</button>
+        <button class="chip" data-q="What's a good 5-step morning routine?">A good 5-step morning routine</button>
+        <button class="chip" data-q="Summarize the causes of the French Revolution">Causes of the French Revolution</button>
+      </div>
+    </div>
+  </div>
+
+  <form class="chat-input-bar" id="chatForm">
+    <input
+      type="text"
+      id="chatInput"
+      class="chat-input"
+      placeholder="Ask Exoo anything…"
+      autocomplete="off"
+      maxlength="2000"
+    />
+    <button type="submit" class="chat-send" id="chatSend" aria-label="Send message">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h13M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+  </form>
+  <p class="chat-disclaimer mono">Exoo can make mistakes. Check important info.</p>
+</main>
+
+<script src="chat.js"></script>
+</body>
+</html>
