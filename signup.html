@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Start free — Exoo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="auth.css">
+</head>
+<body class="auth-body">
+
+<div class="noise"></div>
+<div class="bg-glow"></div>
+
+<header class="auth-header">
+  <a href="index.html" class="logo">exoo<span class="logo-dot">.</span></a>
+</header>
+
+<main class="auth-main">
+  <div class="auth-card">
+    <p class="eyebrow mono">⏤ start free</p>
+    <h1>Create your account</h1>
+    <p class="auth-sub">No credit card. Your first answer is seconds away.</p>
+
+    <div class="auth-error" id="authError"></div>
+    <div class="auth-success" id="authSuccess"></div>
+
+    <form class="auth-form" id="signupForm">
+      <label class="auth-label" for="name">Name</label>
+      <input type="text" id="name" class="auth-input" placeholder="Your name" autocomplete="name" required />
+
+      <label class="auth-label" for="email">Email</label>
+      <input type="email" id="email" class="auth-input" placeholder="you@example.com" autocomplete="email" required />
+
+      <label class="auth-label" for="password">Password</label>
+      <input type="password" id="password" class="auth-input" placeholder="At least 6 characters" autocomplete="new-password" minlength="6" required />
+
+      <button type="submit" class="btn btn-primary full auth-submit" id="signupBtn">Create account</button>
+    </form>
+
+    <p class="auth-switch">Already have an account? <a href="signin.html">Sign in</a></p>
+  </div>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script>
+<script src="auth.js"></script>
+</body>
+</html>

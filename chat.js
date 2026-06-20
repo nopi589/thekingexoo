@@ -1,4 +1,25 @@
 // ============================
+// Auth guard — redirect to sign in if not logged in
+// ============================
+let currentUser = null;
+
+(async function checkAuth() {
+  const { data } = await supabaseClient.auth.getSession();
+  if (!data.session) {
+    window.location.href = 'signin.html';
+    return;
+  }
+  currentUser = data.session.user;
+  const userEmailEl = document.getElementById('userEmail');
+  if (userEmailEl) userEmailEl.textContent = currentUser.email;
+})();
+
+document.getElementById('signOutBtn').addEventListener('click', async () => {
+  await supabaseClient.auth.signOut();
+  window.location.href = 'signin.html';
+});
+
+// ============================
 // State
 // ============================
 let conversation = [];

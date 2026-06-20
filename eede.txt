@@ -5,3 +5,13 @@ sk-ant-api03-e16KE-Qdkw0qRbzT7-CBcoAfJDGncxVO9VI6QncxX_NokKHbpDTCo_7hpE8644K9Dre
 
 
 AQ.Ab8RN6LYn41FvjTeCfMTM6SjpPVrfMVJ9Vluz1jeL3xdJmEphA
+
+
+
+
+sb_secret_4PGlnr6ucXSxOpgUdeGfPA_yRjSAK-D
+
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJydWpvc2FrenRvZXlveHh2bHR0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE5NDU0MDQsImV4cCI6MjA5NzUyMTQwNH0.SZlU4pRO573scu-PVjsO53AE98SuCsT_zZHktJB4if4
+
+
+https://rrujosakztoeyoxxvltt.supabase.co/rest/v1/

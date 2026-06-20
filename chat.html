@@ -20,7 +20,9 @@
   <a href="index.html" class="logo">exoo<span class="logo-dot">.</span></a>
   <div class="chat-header-right">
     <span class="status mono chat-status"><span class="status-dot"></span> online</span>
+    <span class="chat-user-email mono" id="userEmail"></span>
     <button class="btn btn-ghost btn-sm" id="newChatBtn">New chat</button>
+    <button class="btn btn-ghost btn-sm" id="signOutBtn">Sign out</button>
   </div>
 </header>
 
@@ -83,6 +85,8 @@
   <p class="chat-disclaimer mono">Exoo can make mistakes. Check important info.</p>
 </main>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script>
 <script src="chat.js"></script>
 </body>
 </html>
