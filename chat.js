@@ -11,7 +11,7 @@ let currentUser = null;
   }
   currentUser = data.session.user;
   const userEmailEl = document.getElementById('userEmail');
-  if (userEmailEl) userEmailEl.textContent = currentUser.email;
+  if (userEmailEl) userEmailEl.textContent = currentUser.user_metadata?.full_name || currentUser.email;
 
   await loadConversations();
 })();

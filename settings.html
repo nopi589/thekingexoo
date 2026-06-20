@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Settings — Exoo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="auth.css">
+<link rel="stylesheet" href="settings.css">
+</head>
+<body class="auth-body">
+
+<div class="noise"></div>
+<div class="bg-glow"></div>
+
+<header class="auth-header settings-header">
+  <a href="chat.html" class="logo">exoo<span class="logo-dot">.</span></a>
+  <a href="chat.html" class="btn btn-ghost btn-sm">← Back to chat</a>
+</header>
+
+<main class="auth-main">
+  <div class="settings-stack">
+
+    <!-- PROFILE -->
+    <div class="auth-card settings-card">
+      <p class="eyebrow mono">⏤ profile</p>
+      <h1>Your profile</h1>
+      <p class="auth-sub">Update your display name. Your email can't be changed here.</p>
+
+      <div class="auth-error" id="profileError"></div>
+      <div class="auth-success" id="profileSuccess"></div>
+
+      <form class="auth-form" id="profileForm">
+        <label class="auth-label" for="email">Email</label>
+        <input type="email" id="email" class="auth-input" disabled />
+
+        <label class="auth-label" for="name">Name</label>
+        <input type="text" id="name" class="auth-input" placeholder="Your name" autocomplete="name" required />
+
+        <button type="submit" class="btn btn-primary full auth-submit" id="profileBtn">Save changes</button>
+      </form>
+    </div>
+
+    <!-- PASSWORD -->
+    <div class="auth-card settings-card">
+      <p class="eyebrow mono">⏤ security</p>
+      <h1>Change password</h1>
+      <p class="auth-sub">Choose a new password for your account.</p>
+
+      <div class="auth-error" id="passwordError"></div>
+      <div class="auth-success" id="passwordSuccess"></div>
+
+      <form class="auth-form" id="passwordForm">
+        <label class="auth-label" for="newPassword">New password</label>
+        <input type="password" id="newPassword" class="auth-input" placeholder="At least 6 characters" autocomplete="new-password" minlength="6" required />
+
+        <label class="auth-label" for="confirmPassword">Confirm new password</label>
+        <input type="password" id="confirmPassword" class="auth-input" placeholder="Repeat new password" autocomplete="new-password" minlength="6" required />
+
+        <button type="submit" class="btn btn-primary full auth-submit" id="passwordBtn">Update password</button>
+      </form>
+    </div>
+
+  </div>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.108.2"></script>
+<script src="supabase-config.js"></script>
+<script src="settings.js"></script>
+</body>
+</html>
