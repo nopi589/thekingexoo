@@ -504,6 +504,14 @@ section {
   box-shadow: 0 0 50px rgba(124,92,255,0.12);
   background: linear-gradient(180deg, rgba(124,92,255,0.06), var(--surface) 40%);
 }
+.price-card.coming-soon {
+  opacity: 0.7;
+}
+.price-card.coming-soon.featured {
+  box-shadow: none;
+  border-color: var(--border-strong);
+  background: var(--surface);
+}
 .price-badge {
   position: absolute;
   top: -12px;
@@ -514,6 +522,16 @@ section {
   font-weight: 700;
   padding: 4px 12px;
   border-radius: 999px;
+}
+.price-badge.soon-badge {
+  background: var(--surface-2);
+  color: var(--text-muted);
+  border: 1px solid var(--border-strong);
+}
+.price-card .btn[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
 }
 .price-card h3 { font-size: 19px; margin-bottom: 6px; }
 .price-desc { font-size: 13.5px; margin-bottom: 20px; }
