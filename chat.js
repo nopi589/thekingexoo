@@ -12,7 +12,16 @@ let currentUser = null;
   currentUser = data.session.user;
   const userEmailEl = document.getElementById('userEmail');
   if (userEmailEl) userEmailEl.textContent = currentUser.email;
+
+  await loadConversations();
 })();
+
+// Keep things in sync if the session changes in another tab (e.g. sign out)
+supabaseClient.auth.onAuthStateChange((event) => {
+  if (event === 'SIGNED_OUT') {
+    window.location.href = 'signin.html';
+  }
+});
 
 document.getElementById('signOutBtn').addEventListener('click', async () => {
   await supabaseClient.auth.signOut();
@@ -22,10 +31,12 @@ document.getElementById('signOutBtn').addEventListener('click', async () => {
 // ============================
 // State
 // ============================
-let conversation = [];
+let conversation = [];          // [{role, content, attachments}] sent to /api/chat
 let isStreaming = false;
 let selectedModel = 'sonnet';
-let pendingFiles = []; // [{name, mimeType, dataUrl/text, kind: 'image'|'pdf'|'text'}]
+let pendingFiles = [];          // [{name, mimeType, dataUrl/text, kind: 'image'|'pdf'|'text'}]
+let currentConversationId = null;
+let conversationsCache = [];    // [{id, title, updated_at}]
 
 const chatWindow = document.getElementById('chatWindow');
 const chatEmpty = document.getElementById('chatEmpty');
@@ -40,8 +51,29 @@ const modelSelectWrap = document.querySelector('.model-select-wrap');
 const modelSelectBtn = document.getElementById('modelSelectBtn');
 const modelSelectLabel = document.getElementById('modelSelectLabel');
 const modelDropdown = document.getElementById('modelDropdown');
+const sidebar = document.getElementById('sidebar');
+const sidebarList = document.getElementById('sidebarList');
+const sidebarToggle = document.getElementById('sidebarToggle');
+const sidebarClose = document.getElementById('sidebarClose');
+const sidebarOverlay = document.getElementById('sidebarOverlay');
+const chatCurrentTitle = document.getElementById('chatCurrentTitle');
 
 const MODEL_LABELS = { opus: 'Opus', sonnet: 'Sonnet', haiku: 'Haiku' };
+
+// ============================
+// Sidebar open/close (mobile drawer)
+// ============================
+function openSidebar() {
+  sidebar.classList.add('open');
+  sidebarOverlay.classList.add('show');
+}
+function closeSidebar() {
+  sidebar.classList.remove('open');
+  sidebarOverlay.classList.remove('show');
+}
+sidebarToggle.addEventListener('click', openSidebar);
+sidebarClose.addEventListener('click', closeSidebar);
+sidebarOverlay.addEventListener('click', closeSidebar);
 
 // ============================
 // Suggestion chips
@@ -194,10 +226,165 @@ function renderAttachments() {
 }
 
 // ============================
+// Conversations: load list, render sidebar
+// ============================
+async function loadConversations() {
+  try {
+    const { data, error } = await supabaseClient
+      .from('conversations')
+      .select('id, title, updated_at')
+      .order('updated_at', { ascending: false });
+
+    if (error) throw error;
+    conversationsCache = data || [];
+    renderSidebar();
+  } catch (err) {
+    console.error('Failed to load conversations:', err.message);
+  }
+}
+
+function renderSidebar() {
+  sidebarList.innerHTML = '';
+
+  if (conversationsCache.length === 0) {
+    const hint = document.createElement('p');
+    hint.className = 'sidebar-empty-hint';
+    hint.textContent = 'No conversations yet';
+    sidebarList.appendChild(hint);
+    return;
+  }
+
+  conversationsCache.forEach(conv => {
+    const item = document.createElement('div');
+    item.className = 'conv-item' + (conv.id === currentConversationId ? ' active' : '');
+
+    const title = document.createElement('span');
+    title.className = 'conv-item-title';
+    title.textContent = conv.title || 'New chat';
+    item.appendChild(title);
+
+    const del = document.createElement('button');
+    del.type = 'button';
+    del.className = 'conv-item-delete';
+    del.setAttribute('aria-label', 'Delete conversation');
+    del.textContent = '✕';
+    del.addEventListener('click', (e) => {
+      e.stopPropagation();
+      deleteConversation(conv.id);
+    });
+    item.appendChild(del);
+
+    item.addEventListener('click', () => selectConversation(conv.id));
+    sidebarList.appendChild(item);
+  });
+}
+
+async function deleteConversation(id) {
+  if (!confirm('Delete this conversation? This can\'t be undone.')) return;
+
+  try {
+    const { error } = await supabaseClient.from('conversations').delete().eq('id', id);
+    if (error) throw error;
+
+    conversationsCache = conversationsCache.filter(c => c.id !== id);
+    renderSidebar();
+
+    if (id === currentConversationId) {
+      startNewChatUI();
+    }
+  } catch (err) {
+    alert('Could not delete conversation: ' + err.message);
+  }
+}
+
+async function selectConversation(id) {
+  if (id === currentConversationId) return;
+  closeSidebar();
+
+  try {
+    const { data, error } = await supabaseClient
+      .from('messages')
+      .select('role, content')
+      .eq('conversation_id', id)
+      .order('created_at', { ascending: true });
+
+    if (error) throw error;
+
+    currentConversationId = id;
+    conversation = (data || []).map(m => ({ role: m.role, content: m.content }));
+
+    renderFullConversation();
+    renderSidebar();
+
+    const conv = conversationsCache.find(c => c.id === id);
+    chatCurrentTitle.textContent = conv ? conv.title : 'Chat';
+
+  } catch (err) {
+    alert('Could not load that conversation: ' + err.message);
+  }
+}
+
+function renderFullConversation() {
+  document.querySelectorAll('.msg-row').forEach(el => el.remove());
+  if (chatEmpty) chatEmpty.style.display = 'none';
+
+  conversation.forEach(msg => {
+    if (msg.role === 'user') {
+      addUserMessage(msg.content, []);
+    } else {
+      const row = document.createElement('div');
+      row.className = 'msg-row assistant';
+      const bubble = document.createElement('div');
+      bubble.className = 'msg-bubble';
+      bubble.textContent = msg.content;
+      row.appendChild(bubble);
+      chatWindow.appendChild(row);
+    }
+  });
+  scrollToBottom();
+}
+
+async function createConversation(firstMessageText) {
+  const title = (firstMessageText || 'New chat').slice(0, 60);
+
+  const { data, error } = await supabaseClient
+    .from('conversations')
+    .insert({ user_id: currentUser.id, title })
+    .select('id, title, updated_at')
+    .single();
+
+  if (error) throw error;
+
+  conversationsCache.unshift(data);
+  currentConversationId = data.id;
+  chatCurrentTitle.textContent = data.title;
+  renderSidebar();
+
+  return data.id;
+}
+
+async function saveMessage(conversationId, role, content) {
+  try {
+    await supabaseClient.from('messages').insert({
+      conversation_id: conversationId,
+      role,
+      content
+    });
+    await supabaseClient
+      .from('conversations')
+      .update({ updated_at: new Date().toISOString() })
+      .eq('id', conversationId);
+  } catch (err) {
+    console.error('Failed to save message:', err.message);
+  }
+}
+
+// ============================
 // New chat
 // ============================
-newChatBtn.addEventListener('click', () => {
+function startNewChatUI() {
   conversation = [];
+  currentConversationId = null;
   pendingFiles = [];
   renderAttachments();
   document.querySelectorAll('.msg-row').forEach(el => el.remove());
@@ -205,8 +392,13 @@ newChatBtn.addEventListener('click', () => {
     chatWindow.prepend(chatEmpty);
   }
   chatEmpty.style.display = 'flex';
+  chatCurrentTitle.textContent = 'New chat';
+  renderSidebar();
   chatInput.focus();
-});
+  closeSidebar();
+}
+
+newChatBtn.addEventListener('click', startNewChatUI);
 
 // ============================
 // Render helpers
@@ -305,6 +497,12 @@ async function sendMessage(text) {
   const bubble = addAssistantPlaceholder();
 
   try {
+    // Create the conversation row on the first message of a new chat.
+    if (!currentConversationId) {
+      currentConversationId = await createConversation(text || filesToSend[0]?.name);
+    }
+    await saveMessage(currentConversationId, 'user', text);
+
     const response = await fetch('/api/chat', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -328,6 +526,7 @@ async function sendMessage(text) {
     typeOut(bubble, answer);
 
     conversation.push({ role: 'assistant', content: answer });
+    await saveMessage(currentConversationId, 'assistant', answer);
 
   } catch (err) {
     bubble.classList.add('error');
