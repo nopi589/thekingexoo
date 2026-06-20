@@ -227,11 +227,187 @@
 }
 
 /* ============================
+   ATTACHMENTS PREVIEW
+============================ */
+.chat-attachments {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0 4px 10px;
+}
+.chat-attachments:empty { display: none; }
+
+.attachment-chip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-radius: 10px;
+  padding: 6px 10px 6px 6px;
+  font-size: 12.5px;
+  color: var(--text-muted);
+  max-width: 220px;
+}
+.attachment-chip img {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+.attachment-chip .file-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, rgba(124,92,255,0.18), rgba(45,226,230,0.1));
+  color: var(--cyan);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.attachment-chip .file-icon svg { width: 14px; height: 14px; }
+.attachment-chip .file-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.attachment-remove {
+  background: none;
+  border: none;
+  color: var(--text-dim);
+  cursor: pointer;
+  font-size: 14px;
+  padding: 0 2px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+.attachment-remove:hover { color: #FF9B9B; }
+
+/* ============================
+   ATTACH BUTTON
+============================ */
+.chat-attach-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: none;
+  background: var(--surface-2);
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: color 0.2s ease, background 0.2s ease;
+}
+.chat-attach-btn:hover {
+  color: var(--cyan);
+  background: var(--surface);
+}
+.chat-attach-btn svg { width: 17px; height: 17px; }
+
+/* ============================
+   MODEL SELECTOR
+============================ */
+.model-select-wrap {
+  position: relative;
+  flex-shrink: 0;
+}
+.model-select-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--surface-2);
+  border: 1px solid var(--border-strong);
+  color: var(--text-muted);
+  font-size: 12.5px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+.model-select-btn:hover {
+  border-color: var(--cyan);
+  color: var(--text);
+}
+.model-chevron {
+  width: 13px;
+  height: 13px;
+  transition: transform 0.2s ease;
+}
+.model-select-wrap.open .model-chevron { transform: rotate(180deg); }
+
+.model-dropdown {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  right: 0;
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  padding: 6px;
+  margin: 0;
+  list-style: none;
+  width: 200px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+  opacity: 0;
+  transform: translateY(6px);
+  pointer-events: none;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+  z-index: 20;
+}
+.model-select-wrap.open .model-dropdown {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.model-option {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 9px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+.model-option:hover { background: var(--surface-2); }
+.model-option.selected {
+  background: linear-gradient(135deg, rgba(124,92,255,0.12), rgba(45,226,230,0.06));
+}
+.model-name {
+  font-family: var(--font-display);
+  font-size: 14px;
+  color: var(--text);
+}
+.model-desc {
+  font-size: 11.5px;
+  color: var(--text-dim);
+}
+
+/* ============================
+   CHAT INPUT BAR (override flex-wrap for new controls)
+============================ */
+.chat-input-bar {
+  flex-wrap: nowrap;
+}
+
+/* ============================
    RESPONSIVE
 ============================ */
 @media (max-width: 640px) {
+  .chat-input-bar { padding: 6px 6px 6px 8px; gap: 6px; }
+  .model-select-btn { padding: 8px 10px; font-size: 11.5px; gap: 4px; }
+  .model-chevron { width: 11px; height: 11px; }
+  .model-dropdown { width: 180px; right: -4px; }
   .chat-main { padding: 0 14px; }
   .msg-bubble { max-width: 88%; font-size: 14.5px; }
   .chat-empty h1 { font-size: 24px; }
   .chip { font-size: 13px; padding: 8px 14px; }
+}
+
+@media (max-width: 400px) {
+  .chat-attach-btn { width: 34px; height: 34px; }
+  .chat-send { width: 34px; height: 34px; }
+  .model-select-btn span:first-child { display: none; }
 }
